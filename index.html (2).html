@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Hamza - University Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Global Base Styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #07090e;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Ambient Glowing Orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+    .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #00d2ff; }
+    .orb-2 { top: 40%; right: -10%; width: 45vw; height: 45vw; background: #7a5cff; }
+    .orb-3 { bottom: -10%; left: 20%; width: 40vw; height: 40vw; background: #10b981; }
+
+    /* Glassmorphism Cards & Navigation */
+    .glass-nav {
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(15, 20, 32, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 210, 255, 0.3);
+      box-shadow: 0 15px 35px -10px rgba(0, 210, 255, 0.15);
+    }
+
+    /* Custom CSS Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07090e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 5px;
+      border: 2px solid #07090e;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00d2ff;
+    }
+
+    /* Gradient Text & Highlights */
+    .text-gradient {
+      background: linear-gradient(135deg, #00d2ff 0%, #7a5cff 50%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-blue {
+      background: linear-gradient(135deg, #00d2ff 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen text-slate-300">
+
+  <!-- Ambient background glow elements -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <!-- Sticky Top Navigation Bar -->
+  <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-emerald-400 p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+            <span class="font-mono font-bold text-cyan-400 text-lg">MH</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-white tracking-wider text-base group-hover:text-cyan-400 transition-colors">MUHAMMAD HAMZA</span>
+          <span class="text-[11px] font-mono text-slate-400">CS & AI Undergraduate</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-medium">
+        <a href="#about" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors">About</a>
+        <a href="#education" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors">Education</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors">Skills</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors">Projects</a>
+        <a href="#experience" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors">Experience</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Social Shortcuts Header -->
+      <div class="flex items-center space-x-3">
+        <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener font-mono" class="p-2.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors border border-slate-700/60" title="GitHub Profile">
+          <i class="fa-brands fa-github text-lg"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/hamza922" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white transition-colors border border-blue-500/30" title="LinkedIn Profile">
+          <i class="fa-brands fa-linkedin-in text-lg"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28 py-12 relative z-10">
+
+    <!-- ================= SECTION 1: HERO / BANNER ================= -->
+    <section id="hero" class="pt-8 md:pt-16 flex flex-col lg:flex-row items-center justify-between gap-12">
+      
+      <!-- Hero Text & Intro -->
+      <div class="lg:w-7/12 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>Computer Science & Artificial Intelligence Student</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white leading-none">
+          Hi, I'm <br class="hidden sm:inline">
+          <span class="text-gradient">Muhammad Hamza</span>
+        </h1>
+
+        <p class="text-lg text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+          Undergraduate student focused on <strong class="text-cyan-400">Web Technologies</strong>, <strong class="text-indigo-400">Artificial Intelligence</strong>, and <strong class="text-emerald-400">Search Algorithms</strong>. Building efficient web apps and exploring genetic algorithms.
+        </p>
+
+        <!-- CTAs & Social Links -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+          <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-slate-950 font-bold hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-[1.02] transition-all duration-200 flex items-center space-x-2">
+            <span>Explore Projects</span>
+            <i class="fa-solid fa-arrow-down text-xs"></i>
+          </a>
+          <a href="#contact" class="px-6 py-3.5 rounded-xl glass-card text-white font-semibold hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all duration-200">
+            Get In Touch
+          </a>
+          <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-200 hover:text-white hover:border-slate-500 transition-all flex items-center space-x-2 font-mono text-sm">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/hamza922" target="_blank" rel="noopener" class="px-5 py-3.5 rounded-xl bg-blue-950/40 border border-blue-800/60 text-blue-300 hover:text-white hover:bg-blue-900/60 transition-all flex items-center space-x-2 font-mono text-sm">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+
+        <!-- Metric Badges -->
+        <div class="grid grid-cols-3 gap-4 pt-6 max-w-md mx-auto lg:mx-0 border-t border-slate-800/80">
+          <div>
+            <div class="text-2xl font-black font-mono text-cyan-400">BS CS</div>
+            <div class="text-xs text-slate-400">Degree Program</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black font-mono text-indigo-400">AI / Web</div>
+            <div class="text-xs text-slate-400">Primary Focus</div>
+          </div>
+          <div>
+            <div class="text-2xl font-black font-mono text-emerald-400">100%</div>
+            <div class="text-xs text-slate-400">Dedicated</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Profile Frame -->
+      <div class="lg:w-5/12 flex justify-center">
+        <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-3xl glass-card p-3 border-2 border-cyan-500/30 shadow-2xl group">
+          <div class="w-full h-full rounded-2xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+            <!-- Decorative Accent Circle -->
+            <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-500 opacity-20 blur-xl absolute top-0 right-0"></div>
+            
+            <!-- Avatar Placeholder Icon -->
+            <div class="w-24 h-24 rounded-2xl bg-slate-800 border-2 border-cyan-400/50 flex items-center justify-center mb-4 shadow-inner relative group-hover:scale-105 transition-transform duration-300">
+              <span class="text-3xl font-mono font-black text-cyan-400">MH</span>
+              <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-400 border-2 border-slate-950 rounded-full"></span>
+            </div>
+
+            <h3 class="text-lg font-bold text-white">Muhammad Hamza</h3>
+            <p class="text-xs font-mono text-cyan-400 mb-3">@hamzaejaz922</p>
+
+            <div class="w-full space-y-1.5 font-mono text-[11px] text-slate-400 bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+              <div class="flex justify-between">
+                <span>GitHub:</span>
+                <span class="text-slate-200">hamzaejaz922</span>
+              </div>
+              <div class="flex justify-between">
+                <span>LinkedIn:</span>
+                <span class="text-slate-200">hamza922</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ================= SECTION 2: ABOUT ME ================= -->
+    <section id="about" class="space-y-6 pt-12">
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+          <i class="fa-solid fa-user-astronaut text-xl"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">About Me</h2>
+          <p class="text-xs font-mono text-slate-400">Background, Academic Focus & Goals</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6 leading-relaxed">
+        <p class="text-slate-300 text-base">
+          I am a dedicated <strong class="text-white">Computer Science Student</strong> with a keen interest in modern web engineering and Artificial Intelligence. My academic background blends theory with real project experience in algorithm design and client-side web application development.
+        </p>
+
+        <p class="text-slate-300 text-base">
+          My primary areas of academic exploration include <span class="text-cyan-400 font-semibold">Web Technologies</span>, <span class="text-indigo-400 font-semibold">Genetic & Search Algorithms</span>, and <span class="text-emerald-400 font-semibold">Data Structures</span>. I enjoy converting computational logic into clean, user-friendly software experiences.
+        </p>
+
+        <!-- Core Pillar Highlights -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-cyan-500/40 transition-colors">
+            <i class="fa-solid fa-code text-cyan-400 text-2xl mb-2"></i>
+            <h4 class="font-bold text-white text-sm">Web Engineering</h4>
+            <p class="text-xs text-slate-400 mt-1">Responsive HTML5, CSS3, layout structures, and front-end architectures.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/40 transition-colors">
+            <i class="fa-solid fa-dna text-indigo-400 text-2xl mb-2"></i>
+            <h4 class="font-bold text-white text-sm">Genetic Algorithms</h4>
+            <p class="text-xs text-slate-400 mt-1">Studying crossover, selection, and mutation operators for search optimization.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-emerald-500/40 transition-colors">
+            <i class="fa-solid fa-diagram-project text-emerald-400 text-2xl mb-2"></i>
+            <h4 class="font-bold text-white text-sm">Data Structures</h4>
+            <p class="text-xs text-slate-400 mt-1">Core algorithmic implementations in C++ and Python.</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/40 transition-colors">
+            <i class="fa-brands fa-github text-amber-400 text-2xl mb-2"></i>
+            <h4 class="font-bold text-white text-sm">Version Control</h4>
+            <p class="text-xs text-slate-400 mt-1">Active repository workflow and version tracking on GitHub.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: EDUCATION & ACADEMICS ================= -->
+    <section id="education" class="space-y-6 pt-12">
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+          <i class="fa-solid fa-graduation-cap text-xl"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Education & Academics</h2>
+          <p class="text-xs font-mono text-slate-400">Academic Qualification & Key Modules</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-8">
+        
+        <!-- Degree Banner -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center p-5 rounded-xl bg-slate-900/90 border border-slate-800 gap-4">
+          <div>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-indigo-950 text-indigo-300 border border-indigo-800">Undergraduate Degree</span>
+            <h3 class="text-xl font-bold text-white mt-2">Bachelor of Science in Computer Science (BS CS)</h3>
+            <p class="text-sm text-slate-400">Specializing in Web Development & Artificial Intelligence Coursework</p>
+          </div>
+          <div class="text-left md:text-right font-mono text-xs text-slate-400">
+            <div class="text-cyan-400 font-bold">In Progress</div>
+            <div>University Curriculum</div>
+          </div>
+        </div>
+
+        <!-- Academic Course Modules -->
+        <div class="space-y-4">
+          <h3 class="text-base font-bold text-white tracking-wide">Key Academic Modules</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition-colors">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-white text-sm">Web Technologies</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400">Core Course</span>
+              </div>
+              <p class="text-xs text-slate-400">HTML5 standards, CSS3 layout, flexbox, CSS grid, media queries, cross-browser compatibility, and modular design.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition-colors">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-white text-sm">Artificial Intelligence & Search</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-400">Core Course</span>
+              </div>
+              <p class="text-xs text-slate-400">Formulating problem spaces, informed search heuristics, evolutionary algorithms, and genetic operators.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition-colors">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-white text-sm">Data Structures & Algorithms</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400">Core Course</span>
+              </div>
+              <p class="text-xs text-slate-400">Trees, graphs, search algorithms, sort mechanisms, time/space complexity analysis, and optimization.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700 transition-colors">
+              <div class="flex justify-between items-center mb-1">
+                <span class="font-bold text-white text-sm">Software Engineering Principles</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-400">Core Course</span>
+              </div>
+              <p class="text-xs text-slate-400">Object-oriented programming, system architecture design, clean code practices, and version control.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 4: TECHNICAL SKILLS ================= -->
+    <section id="skills" class="space-y-6 pt-12">
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <i class="fa-solid fa-layer-group text-xl"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Technical Skills</h2>
+          <p class="text-xs font-mono text-slate-400">Technologies & Core Competencies</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Skill Column 1: Web Technologies -->
+        <div class="glass-card rounded-2xl p-6 space-y-4">
+          <div class="flex items-center space-x-2 text-cyan-400 font-bold border-b border-slate-800 pb-3">
+            <i class="fa-solid fa-code"></i>
+            <span>Web Technologies</span>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">HTML5 / Semantic Markup</span>
+                <span class="text-cyan-400">95%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">CSS3 / Flexbox & Grid</span>
+                <span class="text-cyan-400">90%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">Responsive Web Design</span>
+                <span class="text-cyan-400">90%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">Tailwind CSS / Styling</span>
+                <span class="text-cyan-400">85%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skill Column 2: Programming & AI -->
+        <div class="glass-card rounded-2xl p-6 space-y-4">
+          <div class="flex items-center space-x-2 text-indigo-400 font-bold border-b border-slate-800 pb-3">
+            <i class="fa-solid fa-brain"></i>
+            <span>Programming & AI</span>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">Python</span>
+                <span class="text-indigo-400">88%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width: 88%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">Genetic Algorithms</span>
+                <span class="text-indigo-400">82%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width: 82%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">C++ Programming</span>
+                <span class="text-indigo-400">80%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-mono mb-1">
+                <span class="text-slate-200">Data Structures (DSA)</span>
+                <span class="text-indigo-400">85%</span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skill Column 3: Tools & Workflow -->
+        <div class="glass-card rounded-2xl p-6 space-y-4">
+          <div class="flex items-center space-x-2 text-emerald-400 font-bold border-b border-slate-800 pb-3">
+            <i class="fa-solid fa-wrench"></i>
+            <span>Developer Tools</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-mono text-emerald-300">Git / GitHub</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-mono text-cyan-300">VS Code</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-mono text-indigo-300">Jupyter Notebooks</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-mono text-amber-300">Command Line / Terminal</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-mono text-slate-300">Chrome DevTools</span>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700/80 text-xs font-mono text-purple-300">UI Layout Prototyping</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 5: PROJECTS ================= -->
+    <section id="projects" class="space-y-6 pt-12">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <i class="fa-solid fa-laptop-code text-xl"></i>
+          </div>
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Projects</h2>
+            <p class="text-xs font-mono text-slate-400">Academic & GitHub Repository Projects</p>
+          </div>
+        </div>
+
+        <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 bg-cyan-950/60 px-3 py-1.5 rounded-lg border border-cyan-800/60">
+          <i class="fa-brands fa-github"></i>
+          <span>View GitHub: hamzaejaz922</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Project Card 1 -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400">
+                <i class="fa-solid fa-dna text-2xl"></i>
+              </div>
+              <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="text-slate-400 hover:text-white text-lg">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+
+            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Genetic Algorithm Suite</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Implementation analyzing selection techniques, crossover points, and adaptive mutation search operators for optimization.
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800/80 flex flex-wrap gap-2 mt-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-indigo-300">Python</span>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-cyan-300">AI</span>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-slate-300">Optimization</span>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <div class="p-3 rounded-xl bg-cyan-500/10 text-cyan-400">
+                <i class="fa-solid fa-globe text-2xl"></i>
+              </div>
+              <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="text-slate-400 hover:text-white text-lg">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+
+            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">University Web Application</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Responsive web application constructed using pure HTML5 and CSS3 showcasing responsive layouts and UI aesthetics.
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800/80 flex flex-wrap gap-2 mt-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-cyan-300">HTML5</span>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-blue-300">CSS3</span>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-slate-300">Responsive</span>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between group">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <div class="p-3 rounded-xl bg-emerald-500/10 text-emerald-400">
+                <i class="fa-solid fa-folder-tree text-2xl"></i>
+              </div>
+              <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="text-slate-400 hover:text-white text-lg">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+
+            <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Data Structures Repository</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              C++ and Python implementation suite covering trees, search graphs, dynamic programming, and data storage structures.
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-slate-800/80 flex flex-wrap gap-2 mt-4">
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-emerald-300">C++</span>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-indigo-300">Algorithms</span>
+            <span class="px-2.5 py-1 rounded text-[11px] font-mono bg-slate-900 text-slate-300">Data Structures</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 6: EXPERIENCE & ACHIEVEMENTS ================= -->
+    <section id="experience" class="space-y-6 pt-12">
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+          <i class="fa-solid fa-briefcase text-xl"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Experience & Achievements</h2>
+          <p class="text-xs font-mono text-slate-400">Academic Projects & Lab Contributions</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-2xl p-6 sm:p-8 relative">
+        <div class="border-l-2 border-slate-800 pl-6 space-y-8 my-2">
+          
+          <!-- Experience Item 1 -->
+          <div class="relative group">
+            <div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-cyan-400 border-4 border-slate-950"></div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h3 class="text-base font-bold text-white">Academic Lab & Web Development Work</h3>
+              <span class="text-xs font-mono text-cyan-400">University Coursework</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Designed modern user interfaces using semantic HTML5 and responsive CSS layout systems. Practiced standard web accessibility and clean layout techniques.
+            </p>
+          </div>
+
+          <!-- Experience Item 2 -->
+          <div class="relative group">
+            <div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-400 border-4 border-slate-950"></div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h3 class="text-base font-bold text-white">AI Search Operator Analysis</h3>
+              <span class="text-xs font-mono text-indigo-400">Research & Project Tasks</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Formulated algorithmic experimentations exploring the impact of mutation rates and fitness scaling in genetic algorithms for computational search.
+            </p>
+          </div>
+
+          <!-- Experience Item 3 -->
+          <div class="relative group">
+            <div class="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-4 border-slate-950"></div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-1">
+              <h3 class="text-base font-bold text-white">GitHub Project & Code Management</h3>
+              <span class="text-xs font-mono text-emerald-400">Continuous Activity</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Maintained open source code repositories on GitHub (<code class="text-cyan-300">hamzaejaz922</code>), showcasing structured commit histories and clean code layout.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 7: CONTACT & SOCIAL CONNECT ================= -->
+    <section id="contact" class="space-y-6 pt-12">
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+          <i class="fa-solid fa-paper-plane text-xl"></i>
+        </div>
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Contact & Connect</h2>
+          <p class="text-xs font-mono text-slate-400">Get In Touch for Academic & Technical Projects</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Social Cards Sidebar -->
+        <div class="lg:col-span-5 space-y-4">
+          <a href="https://www.linkedin.com/in/hamza922" target="_blank" rel="noopener" class="glass-card rounded-2xl p-5 flex items-center space-x-4 hover:border-blue-500/50 transition-colors block">
+            <div class="p-3.5 rounded-xl bg-blue-600/20 text-blue-400">
+              <i class="fa-brands fa-linkedin-in text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-mono">LinkedIn Network</div>
+              <div class="text-sm font-bold text-white">linkedin.com/in/hamza922</div>
+            </div>
+          </a>
+
+          <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="glass-card rounded-2xl p-5 flex items-center space-x-4 hover:border-slate-500/50 transition-colors block">
+            <div class="p-3.5 rounded-xl bg-slate-800 text-slate-200">
+              <i class="fa-brands fa-github text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 font-mono">GitHub Profile</div>
+              <div class="text-sm font-bold text-white">github.com/hamzaejaz922</div>
+            </div>
+          </a>
+
+          <div class="glass-card rounded-2xl p-5 space-y-2">
+            <div class="text-xs font-mono text-cyan-400">Quick Response</div>
+            <p class="text-xs text-slate-400">
+              Feel free to connect on LinkedIn or check my latest code commits directly on GitHub.
+            </p>
+          </div>
+        </div>
+
+        <!-- HTML Contact Form -->
+        <div class="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8">
+          <form class="space-y-4" onsubmit="event.preventDefault(); text-cyan-400">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1.5">Your Name</label>
+                <input type="text" placeholder="Full Name" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 text-sm">
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono text-slate-400 mb-1.5">Your Email</label>
+                <input type="email" placeholder="email@example.com" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 text-sm">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1.5">Subject</label>
+              <input type="text" placeholder="Project / Collaboration Inquiry" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 text-sm">
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1.5">Message</label>
+              <textarea rows="4" placeholder="Write your message here..." required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 text-sm"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-slate-950 font-bold hover:shadow-lg hover:shadow-cyan-500/20 transition-all text-sm">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 py-8 text-xs font-mono text-slate-500 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div>
+        © 2026 <span class="text-slate-300 font-bold">Muhammad Hamza</span>. All rights reserved.
+      </div>
+      <div class="flex items-center space-x-6">
+        <a href="https://github.com/hamzaejaz922" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/hamza922" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors">LinkedIn</a>
+        <a href="#hero" class="text-slate-400 hover:text-white transition-colors">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
